@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pulse Platform — One Engine, Every Domain | CIIcore</title>
+<meta name="description" content="The Pulse Platform: FarmerPulse, GovPulse, HealthPulse, EduPulse, BusinessPulse, CommunityPulse, ResearchPulse, and EnterprisePulse — eight domains, one shared conversational engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+      <span class="brand__name">CI<b>I</b>core</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-item"><button aria-expanded="false">Product <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="what-is-cii.html">What is CII? <span>The infrastructure layer, explained</span></a>
+          <a href="what-is-cii.html#architecture">Reference Architecture <span>Channels → memory → intelligence</span></a>
+          <a href="pulse-platform.html">Pulse Platform <span>One engine, every domain</span></a>
+          <a href="index.html#marketplace">Marketplace &amp; Intent Exchange <span>Opportunity matching, live</span></a>
+        </div>
+      </div>
+      <div class="nav-item"><button aria-expanded="false">Solutions <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega mega--wide">
+          <a href="#farmerpulse">FarmerPulse <span>Agriculture &amp; agribusiness</span></a>
+          <a href="#govpulse">GovPulse <span>Government &amp; public service</span></a>
+          <a href="#healthpulse">HealthPulse <span>Health systems &amp; NGOs</span></a>
+          <a href="#edupulse">EduPulse <span>Education &amp; training</span></a>
+          <a href="#businesspulse">BusinessPulse <span>SMEs &amp; enterprise</span></a>
+          <a href="#more">CommunityPulse, ResearchPulse, EnterprisePulse <span>See all eight</span></a>
+        </div>
+      </div>
+      <div class="nav-item"><button aria-expanded="false">Developers <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="developers.html">API &amp; Developers <span>REST + realtime, SDKs</span></a>
+          <a href="developers.html#docs">Documentation <span>Guides &amp; references</span></a>
+          <a href="developers.html#knowledge">Knowledge Center <span>Concepts &amp; best practice</span></a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#partners">Partners</a>
+    </nav>
+    <div class="header__actions">
+      <a href="contact.html" class="btn btn--ghost">Contact</a>
+      <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Pulse Platform</p>
+    <h1>One Engine. Eight Domains. Endless Room to Grow.</h1>
+    <p>Every Pulse — FarmerPulse, GovPulse, HealthPulse, EduPulse, BusinessPulse, CommunityPulse, ResearchPulse, and EnterprisePulse — runs on the same capture, memory, and intelligence engine, with its own domain vocabulary, workflows, and dashboards layered on top.</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="pulse-grid" id="pulseGrid"></div>
+  </div>
+</section>
+
+<!-- FARMERPULSE -->
+<section class="content-section content-section--alt" id="farmerpulse">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">Agriculture &amp; agribusiness</p>
+      <h2>FarmerPulse</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">FarmerPulse is CII's most mature Pulse — the Intent Exchange that turns WhatsApp conversations into verified buyer requests, seller listings, service opportunities, and real-time market intelligence across agricultural value chains.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li>Buy/sell intents matched automatically by commodity, location, and quantity</li>
+        <li>Finance, transport, storage, and processing requests structured the same way</li>
+        <li>Live market intelligence dashboard fed entirely by real conversations</li>
+      </ul>
+      <a href="#" class="btn btn--primary" style="margin-top:22px;">Visit FarmerPulse Intent Exchange →</a>
+    </div>
+    <div class="arch-detail" style="background:var(--ink);">
+      <h4>Built on</h4>
+      <p>The same seven-layer CII architecture, with an agriculture-specific ontology (commodities, units, seasons, quality grades) layered on top of the shared engine.</p>
+      <div class="arch-detail__tech"><span>WhatsApp Cloud API</span><span>Supabase Realtime</span><span>Postgres</span><span>OpenAI</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVPULSE -->
+<section class="content-section" id="govpulse">
+  <div class="container two-col">
+    <div class="arch-detail" style="background:var(--ink);order:2;">
+      <h4>Typical use cases</h4>
+      <p>Citizen service requests, public feedback on programs, complaint triage, and structured reporting to government departments and legislative offices.</p>
+      <div class="arch-detail__tech"><span>Multi-language NLU</span><span>Case Routing</span><span>Public Dashboards</span></div>
+    </div>
+    <div style="order:1;">
+      <p class="eyebrow">Government &amp; public service</p>
+      <h2>GovPulse</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">GovPulse structures citizen conversations — requests, complaints, and feedback — into a queryable record that government departments can act on and report against, without asking citizens to fill in a single form.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li>Every citizen message becomes a tracked, categorized case</li>
+        <li>Departments see live dashboards of demand by service and region</li>
+        <li>Feedback loops directly into program and policy design</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTHPULSE -->
+<section class="content-section content-section--alt" id="healthpulse">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">Health systems &amp; NGOs</p>
+      <h2>HealthPulse</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">HealthPulse turns patient and community-health conversations into structured signal — symptom reports, appointment requests, and outbreak-relevant patterns — surfaced to health workers and public-health teams in real time.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li>Structured symptom and service-request capture from community chat</li>
+        <li>Early-warning pattern detection across geographies</li>
+        <li>Built to respect strict privacy and consent boundaries by design</li>
+      </ul>
+    </div>
+    <div class="arch-detail" style="background:var(--ink);">
+      <h4>Built for sensitivity</h4>
+      <p>HealthPulse applies the strictest visibility defaults in the Pulse ecosystem — health conversations are private unless a person or authorized health worker explicitly shares them.</p>
+      <div class="arch-detail__tech"><span>Consent-first Design</span><span>Role-based Access</span><span>Audit Logging</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUPULSE -->
+<section class="content-section" id="edupulse">
+  <div class="container two-col">
+    <div class="arch-detail" style="background:var(--ink);order:2;">
+      <h4>Typical use cases</h4>
+      <p>Learner support chats, teacher reporting, and training-provider matching, structured into progress and content-gap intelligence for institutions.</p>
+      <div class="arch-detail__tech"><span>Progress Tracking</span><span>Content-gap Detection</span><span>Provider Matching</span></div>
+    </div>
+    <div style="order:1;">
+      <p class="eyebrow">Education &amp; training</p>
+      <h2>EduPulse</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">EduPulse structures learner and educator conversations into progress signals, support requests, and gaps in available training — connecting learners to the right training providers automatically.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li>Learner questions become structured support tickets and FAQ data</li>
+        <li>Institutions see where content or instruction gaps recur</li>
+        <li>Training-provider matching mirrors FarmerPulse's intent-matching model</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESSPULSE -->
+<section class="content-section content-section--alt" id="businesspulse">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">SMEs &amp; enterprise</p>
+      <h2>BusinessPulse</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">BusinessPulse turns customer and supplier chat into structured leads, orders, and service intelligence — giving growing businesses a CRM that fills itself from real conversations instead of manual entry.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li>Inbound customer chats become structured leads and orders automatically</li>
+        <li>Supplier conversations feed procurement and inventory intelligence</li>
+        <li>Works alongside existing tools via API, not as a replacement</li>
+      </ul>
+    </div>
+    <div class="arch-detail" style="background:var(--ink);">
+      <h4>Built for growth</h4>
+      <p>BusinessPulse is designed to onboard in days on a single WhatsApp Business number, then expand into web chat and Telegram as the business scales.</p>
+      <div class="arch-detail__tech"><span>WhatsApp Business</span><span>CRM Sync API</span><span>Order Automation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE PULSES -->
+<section class="content-section" id="more">
+  <div class="container">
+    <div class="section-head">
+      <div><p class="eyebrow">And three more</p><h2>CommunityPulse · ResearchPulse · EnterprisePulse</h2></div>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-card__icon">🤝</div>
+        <h3>CommunityPulse</h3>
+        <p>Helps NGOs and community organizations structure beneficiary conversations into programmatic insight and reporting.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon">🔬</div>
+        <h3>ResearchPulse</h3>
+        <p>Turns interview and survey conversations into research-ready, queryable qualitative data — with full provenance back to source.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon">🏢</div>
+        <h3>EnterprisePulse</h3>
+        <p>Applies the CII engine inside large organizations — turning internal and customer conversations into institutional memory.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon">➕</div>
+        <h3>Building a new Pulse</h3>
+        <p>Every Pulse shares the same seven-layer engine. Adding a domain means defining its vocabulary and workflows, not rebuilding infrastructure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container final-cta__inner">
+    <h2>Don't See Your Domain?</h2>
+    <p>The Pulse Platform is built to extend. Talk to us about standing up a new Pulse for your sector.</p>
+    <div class="final-cta__actions">
+      <a href="contact.html" class="btn btn--pulse btn--lg">Talk to Our Team</a>
+      <a href="developers.html" class="btn btn--outline btn--onDark btn--lg">See the API</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="brand__name">CI<b>I</b>core</span>
+      <p>The Conversational Intelligence Infrastructure. Every conversation creates intelligence. Every intelligence creates opportunity.</p>
+    </div>
+    <div><h4>Product</h4><a href="what-is-cii.html">What is CII?</a><a href="what-is-cii.html#architecture">Reference Architecture</a><a href="pulse-platform.html">Pulse Platform</a><a href="index.html#marketplace">Intent Exchange</a></div>
+    <div><h4>Solutions</h4><a href="#farmerpulse">FarmerPulse</a><a href="#govpulse">GovPulse</a><a href="#healthpulse">HealthPulse</a><a href="#edupulse">EduPulse</a><a href="#businesspulse">BusinessPulse</a></div>
+    <div><h4>Developers</h4><a href="developers.html">API Reference</a><a href="developers.html#docs">Documentation</a><a href="index.html#resources">Knowledge Center</a></div>
+    <div><h4>Company</h4><a href="pricing.html">Pricing</a><a href="index.html#partners">Partners</a><a href="contact.html">Contact</a><a href="get-started.html">Get Started</a></div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 CIIcore. Conversational Intelligence Infrastructure.</span>
+    <span>Lagos · Abuja · Remote-first</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

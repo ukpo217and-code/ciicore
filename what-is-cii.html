@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What is CII? — Conversational Intelligence Infrastructure | CIIcore</title>
+<meta name="description" content="CII is the infrastructure layer that turns conversations into structured, permanent organizational intelligence. Learn the model, the architecture, and how it differs from chatbots and CRMs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+      <span class="brand__name">CI<b>I</b>core</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-item">
+        <button aria-expanded="false">Product <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="what-is-cii.html">What is CII? <span>The infrastructure layer, explained</span></a>
+          <a href="what-is-cii.html#architecture">Reference Architecture <span>Channels → memory → intelligence</span></a>
+          <a href="pulse-platform.html">Pulse Platform <span>One engine, every domain</span></a>
+          <a href="index.html#marketplace">Marketplace &amp; Intent Exchange <span>Opportunity matching, live</span></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button aria-expanded="false">Solutions <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega mega--wide">
+          <a href="pulse-platform.html#farmerpulse">FarmerPulse <span>Agriculture &amp; agribusiness</span></a>
+          <a href="pulse-platform.html#govpulse">GovPulse <span>Government &amp; public service</span></a>
+          <a href="pulse-platform.html#healthpulse">HealthPulse <span>Health systems &amp; NGOs</span></a>
+          <a href="pulse-platform.html#edupulse">EduPulse <span>Education &amp; training</span></a>
+          <a href="pulse-platform.html#businesspulse">BusinessPulse <span>SMEs &amp; enterprise</span></a>
+          <a href="pulse-platform.html#more">CommunityPulse, ResearchPulse, EnterprisePulse <span>See all eight</span></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button aria-expanded="false">Developers <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="developers.html">API &amp; Developers <span>REST + realtime, SDKs</span></a>
+          <a href="developers.html#docs">Documentation <span>Guides &amp; references</span></a>
+          <a href="developers.html#knowledge">Knowledge Center <span>Concepts &amp; best practice</span></a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#partners">Partners</a>
+    </nav>
+    <div class="header__actions">
+      <a href="contact.html" class="btn btn--ghost">Contact</a>
+      <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">Home</a> / What is CII?</p>
+    <h1>The Infrastructure Layer for Conversations</h1>
+    <p>Most organizations treat conversations as disposable — a message answered and forgotten. CII treats every conversation as a permanent, structured organizational asset: captured once, understood automatically, and available forever.</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">The core idea</p>
+      <h2>Infrastructure, Not an App</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">CII is not a chatbot and not a CRM. A chatbot answers a single conversation and discards it. A CRM requires someone to manually type in what was discussed. CII sits underneath both: it captures the conversation exactly as it happened, structures it automatically, and keeps it queryable indefinitely — so any tool built on top, including a chatbot or a CRM, can draw on it.</p>
+      <ul class="check-list" style="margin-top:22px;">
+        <li>No forms — people communicate the way they already do, in chat</li>
+        <li>No re-keying — structure is extracted, not manually entered</li>
+        <li>No expiry — a conversation from a year ago is still queryable today</li>
+        <li>No silos — one engine, shared across every domain-specific Pulse</li>
+      </ul>
+    </div>
+    <div class="arch-detail" style="background:var(--ink);">
+      <h4>In one sentence</h4>
+      <p>CII is the layer that turns "what was said" into "what the organization knows" — automatically, continuously, and at the scale of everyday conversation.</p>
+      <div class="arch-detail__tech"><span>Capture</span><span>Understand</span><span>Structure</span><span>Activate</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--alt" id="architecture">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Reference architecture</p>
+        <h2>Seven Layers, One Engine</h2>
+        <p>Every Pulse is an application built on the same seven-layer stack.</p>
+      </div>
+    </div>
+    <div class="arch-wrap">
+      <div class="arch-stack" id="archStack"></div>
+      <div class="arch-detail" id="archDetail"></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">The lifecycle</p>
+        <h2>From Conversation to Organizational Learning</h2>
+        <p>Twelve stages, one continuous loop — explore each one below.</p>
+      </div>
+    </div>
+    <div class="lifecycle-wrap" style="background:var(--ink);border-radius:var(--radius-lg);padding:36px;">
+      <svg class="loop-svg" viewBox="0 0 480 480" id="loopSvg"></svg>
+      <div class="loop-detail" id="loopDetail">
+        <span class="step-num">Step 01</span>
+        <h4>Conversation</h4>
+        <p>A person messages naturally on WhatsApp, Telegram, or web chat — in their own words, with no forms to fill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--alt">
+  <div class="container">
+    <div class="section-head">
+      <div><p class="eyebrow">Common questions</p><h2>FAQ</h2></div>
+    </div>
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary>How is CII different from a chatbot?</summary>
+        <p>A chatbot is a conversation interface. CII is what happens after the conversation: capturing it, structuring it, and making it a durable, searchable asset. A Pulse's chat experience can be built on any channel; CII is the infrastructure that makes every one of those conversations count afterward.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is CII different from a CRM?</summary>
+        <p>A CRM stores what a person chooses to type into a form, after the fact. CII extracts structure directly from the conversation itself, in real time, with no manual entry step — and keeps the original conversation alongside the structured record.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do we need to build our own AI models?</summary>
+        <p>No. CII uses OpenAI's models for understanding and extraction, combined with retrieval-augmented generation over your organization's own conversation history stored in Postgres/pgvector — so responses and structure are grounded in your data, not just general knowledge.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to a conversation marked private?</summary>
+        <p>Private conversations are captured and structured like any other, but are never surfaced outside the organization or Pulse that owns them — visibility (private, partners-only, public) is set explicitly, by the person or organization, at the point of conversation.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container final-cta__inner">
+    <h2>See CII Applied to Your Domain</h2>
+    <p>Explore the Pulse ecosystem, or talk to us about building a new Pulse for your sector.</p>
+    <div class="final-cta__actions">
+      <a href="pulse-platform.html" class="btn btn--pulse btn--lg">Explore the Pulse Platform</a>
+      <a href="contact.html" class="btn btn--outline btn--onDark btn--lg">Talk to Our Team</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="brand__name">CI<b>I</b>core</span>
+      <p>The Conversational Intelligence Infrastructure. Every conversation creates intelligence. Every intelligence creates opportunity.</p>
+    </div>
+    <div><h4>Product</h4><a href="what-is-cii.html">What is CII?</a><a href="what-is-cii.html#architecture">Reference Architecture</a><a href="pulse-platform.html">Pulse Platform</a><a href="index.html#marketplace">Intent Exchange</a></div>
+    <div><h4>Solutions</h4><a href="pulse-platform.html#farmerpulse">FarmerPulse</a><a href="pulse-platform.html#govpulse">GovPulse</a><a href="pulse-platform.html#healthpulse">HealthPulse</a><a href="pulse-platform.html#edupulse">EduPulse</a><a href="pulse-platform.html#businesspulse">BusinessPulse</a></div>
+    <div><h4>Developers</h4><a href="developers.html">API Reference</a><a href="developers.html#docs">Documentation</a><a href="index.html#resources">Knowledge Center</a></div>
+    <div><h4>Company</h4><a href="pricing.html">Pricing</a><a href="index.html#partners">Partners</a><a href="contact.html">Contact</a><a href="get-started.html">Get Started</a></div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 CIIcore. Conversational Intelligence Infrastructure.</span>
+    <span>Lagos · Abuja · Remote-first</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
