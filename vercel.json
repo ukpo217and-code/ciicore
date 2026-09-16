@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/farmer/:code/card", "destination": "/farmer/card.html" },
+    { "source": "/farmer/:code", "destination": "/farmer/index.html" }
+  ]
+}

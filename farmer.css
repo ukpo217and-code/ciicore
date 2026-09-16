@@ -1,0 +1,256 @@
+/* ============================================================
+   Farmer profile + card — extends styles.css tokens
+   ============================================================ */
+
+.vpi-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+
+.farmer-main, .card-main {
+  position: relative;
+  z-index: 1;
+  padding: 56px 0 96px;
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* ---------- loading / not-found ---------- */
+
+.state-panel {
+  padding: 80px 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+.state-panel .terminal-caret { color: var(--accent); }
+.state-panel .section-title { margin-bottom: 14px; }
+.state-panel .btn { margin-top: 20px; }
+
+/* ---------- profile head ---------- */
+
+.profile-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-dim);
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.profile-name { margin-bottom: 6px; }
+.profile-code { color: var(--text-muted); font-size: 0.95rem; }
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.profile-fact {
+  background: var(--surface);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fact-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.fact-value { font-size: 1rem; color: var(--text); font-weight: 500; }
+
+/* ---------- panels ---------- */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 28px 32px;
+  margin-bottom: 24px;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.panel-head h2 { font-size: 1.1rem; }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface-2);
+}
+.status-pill.tone-good { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-dim); }
+.status-pill.tone-warn { color: var(--amber); background: rgba(232, 181, 99, 0.1); border-color: rgba(232, 181, 99, 0.35); }
+.status-pill.tone-bad { color: #f0796a; background: rgba(240, 121, 106, 0.1); border-color: rgba(240, 121, 106, 0.35); }
+.status-pill.tone-muted { color: var(--text-faint); }
+.status-pill.tone-neutral { color: var(--text-muted); }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stat-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--text); }
+.stat-num-sm { font-size: 1rem; font-family: var(--font-mono); }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ---------- interventions list ---------- */
+
+.interventions-list { display: flex; flex-direction: column; gap: 12px; }
+.empty-note { color: var(--text-faint); font-size: 0.92rem; }
+.intervention-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--surface-2);
+}
+.intervention-main { display: flex; flex-direction: column; gap: 4px; }
+.intervention-type { font-weight: 600; color: var(--text); font-size: 0.95rem; }
+.intervention-item { color: var(--text-muted); font-size: 0.85rem; }
+.intervention-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-faint); }
+
+/* ---------- vpi explainer ---------- */
+
+.vpi-explainer .flow-diagram { margin: 4px 0 24px; }
+.vpi-copy { margin: 0; max-width: none; }
+
+/* ============================================================
+   Card page
+   ============================================================ */
+
+.card-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.print-actions { display: flex; gap: 12px; }
+
+.farmer-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.farmer-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.farmer-card-brand { display: flex; align-items: center; gap: 8px; }
+.farmer-card-brand .brand-text { font-family: var(--font-mono); font-weight: 600; font-size: 14px; }
+.farmer-card-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-dim);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.farmer-card-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 20px;
+}
+.farmer-card-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.farmer-card-name { font-size: 1.3rem; margin: 6px 0 4px; }
+.farmer-card-id { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px; }
+.farmer-card-rows { display: flex; flex-direction: column; gap: 10px; }
+.farmer-card-row { display: flex; flex-direction: column; gap: 2px; }
+.farmer-card-qr { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
+.farmer-card-qr img { border-radius: 6px; background: #fff; padding: 6px; }
+.farmer-card-qr-url { font-size: 10px; color: var(--text-faint); text-align: center; max-width: 140px; word-break: break-all; }
+.farmer-card-footer {
+  padding: 14px 20px 18px;
+  border-top: 1px dashed var(--border);
+  color: var(--text-faint);
+  font-size: 0.78rem;
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  .no-print { display: none !important; }
+  .grid-overlay { display: none !important; }
+  body { background: #fff; }
+  .card-main { padding: 0; }
+  .farmer-card {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+  .farmer-card-top { background: #f5f5f5; }
+  .farmer-card-name, .fact-value, .brand-text { color: #0a0f0d; }
+  .fact-label, .farmer-card-label, .farmer-card-footer { color: #555; }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 820px) {
+  .profile-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .profile-head { flex-direction: column; align-items: flex-start; }
+  .farmer-card-body { flex-direction: column; align-items: flex-start; }
+  .farmer-card-qr { align-self: center; }
+}
