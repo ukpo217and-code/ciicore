@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verified Farmer Profile | CII VPI</title>
+<meta name="description" content="Verified Progression Infrastructure — public farmer profile showing verified interventions, evidence and progression.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/farmer/farmer.css">
+</head>
+<body data-page="profile">
+
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a href="/" class="brand">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span class="brand-text">CII<span class="brand-sub">CORE</span></span>
+    </a>
+    <span class="vpi-tag">Verified Progression Infrastructure</span>
+  </nav>
+</header>
+
+<main id="main" class="farmer-main">
+  <div class="container narrow">
+
+    <div id="farmerLoading" class="state-panel">
+      <span class="terminal-caret" aria-hidden="true">▌</span> Loading verified farmer profile…
+    </div>
+
+    <div id="farmerNotFound" class="state-panel" hidden>
+      <h1 class="section-title">Farmer profile not found</h1>
+      <p class="section-lead">
+        We couldn't find a verified farmer profile for
+        <strong id="farmerNotFoundCode"></strong>. Check the code on the farmer card, or scan the QR again.
+      </p>
+      <a href="/" class="btn btn-ghost">Back to CII Core</a>
+    </div>
+
+    <div id="farmerContent" class="farmer-content" hidden>
+
+      <div class="profile-head">
+        <div>
+          <span id="verifiedBadge" class="verified-badge">Verified Farmer</span>
+          <h1 id="farmerName" class="section-title profile-name"></h1>
+          <p class="profile-code">Farmer ID <span id="farmerCode" class="mono"></span></p>
+        </div>
+        <a id="cardLink" href="#" class="btn btn-ghost">View printable card</a>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-fact">
+          <span class="fact-label">Enterprise</span>
+          <span id="farmerEnterprise" class="fact-value"></span>
+        </div>
+        <div class="profile-fact">
+          <span class="fact-label">Community</span>
+          <span id="farmerCommunity" class="fact-value"></span>
+        </div>
+        <div class="profile-fact">
+          <span class="fact-label">LGA</span>
+          <span id="farmerLga" class="fact-value"></span>
+        </div>
+        <div class="profile-fact">
+          <span class="fact-label">Farm size</span>
+          <span id="farmerFarmSize" class="fact-value"></span>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Progression status</h2>
+          <span id="progressionStatus" class="status-pill"></span>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <span id="statInterventionTotal" class="stat-num"></span>
+            <span class="stat-label">Interventions total</span>
+          </div>
+          <div class="stat-box">
+            <span id="statInterventionVerified" class="stat-num"></span>
+            <span class="stat-label">Progress verified</span>
+          </div>
+          <div class="stat-box">
+            <span id="statInterventionPending" class="stat-num"></span>
+            <span class="stat-label">Follow-up / awaiting</span>
+          </div>
+          <div class="stat-box">
+            <span id="statInterventionIssues" class="stat-num"></span>
+            <span class="stat-label">Issues reported</span>
+          </div>
+          <div class="stat-box">
+            <span id="statEvidenceTotal" class="stat-num"></span>
+            <span class="stat-label">Evidence submitted</span>
+          </div>
+          <div class="stat-box">
+            <span id="statEvidenceVerified" class="stat-num"></span>
+            <span class="stat-label">Evidence verified</span>
+          </div>
+          <div class="stat-box">
+            <span id="statEvidenceAwaiting" class="stat-num"></span>
+            <span class="stat-label">Evidence awaiting</span>
+          </div>
+          <div class="stat-box">
+            <span id="statLatestVerified" class="stat-num stat-num-sm"></span>
+            <span class="stat-label">Latest verified</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Interventions</h2>
+        </div>
+        <div id="interventionsList" class="interventions-list"></div>
+      </section>
+
+      <section class="panel vpi-explainer">
+        <div class="panel-head">
+          <h2>What is Verified Progression Infrastructure?</h2>
+        </div>
+        <div class="flow-diagram" role="img" aria-label="Participant leads to intervention, then evidence, then verification, then progression">
+          <div class="flow-step"><span>Participant</span></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>Intervention</span></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>Evidence</span></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step"><span>Verification</span></div>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <div class="flow-step flow-step-core"><span>Progression</span></div>
+        </div>
+        <p class="section-lead vpi-copy">
+          Every field on this page traces back to a verified record — an intervention that was assigned,
+          evidence that was submitted, and a verification step that confirmed it happened. Nothing here is
+          self-reported without a check. This is what VPI makes visible: not just that support was given,
+          but that progress actually followed.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span class="brand-text">CII<span class="brand-sub">CORE</span></span>
+    </div>
+    <p class="footer-tag">Verified Progression Infrastructure. Public profile fields only — no private data is shown here.</p>
+    <p class="footer-copy">&copy; <span id="year"></span> CII Core.</p>
+  </div>
+</footer>
+
+<script src="/farmer/farmer.js"></script>
+</body>
+  </html>
