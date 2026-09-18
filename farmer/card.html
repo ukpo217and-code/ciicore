@@ -6,23 +6,20 @@
 <title>Farmer Card | CII VPI</title>
 <meta name="description" content="Printable verified farmer card with QR link to the public VPI progression profile.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/farmer/farmer.css">
 </head>
-<body data-page="card">
-
-<div class="grid-overlay" aria-hidden="true"></div>
+<body>
 
 <header class="site-header no-print">
-  <nav class="nav" aria-label="Primary">
+  <div class="container header__inner">
     <a href="/" class="brand">
-      <span class="brand-mark" aria-hidden="true">◈</span>
-      <span class="brand-text">CII<span class="brand-sub">CORE</span></span>
+      <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+      <span class="brand__name">CI<b>I</b>core</span>
     </a>
-    <span class="vpi-tag">Verified Progression Infrastructure</span>
-  </nav>
+    <span class="vpi-tag" style="margin-left:auto;">Verified Progression Infrastructure</span>
+  </div>
 </header>
 
 <main id="main" class="card-main">
@@ -33,7 +30,69 @@
     </div>
 
     <div id="cardNotFound" class="state-panel no-print" hidden>
-      <h1 class="section-title">Farmer profile not found</h1>
+      <h1>Farmer profile not found</h1>
+      <p>This farmer code doesn't match a verified profile.</p>
+      <a href="/" class="btn btn--outline">Back to CII Core</a>
+    </div>
+
+    <div id="farmerCard" class="card-wrap" hidden>
+
+      <div class="print-actions no-print">
+        <button id="printCardBtn" class="btn btn--primary">Print card</button>
+        <a id="cardProfileLink" href="#" class="btn btn--outline">View full profile</a>
+      </div>
+
+      <div class="farmer-card">
+        <div class="farmer-card-top">
+          <div class="farmer-card-brand">
+            <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+            <span class="farmer-card-brand-name">CI<b>I</b>core</span>
+          </div>
+          <span class="farmer-card-badge" id="cardVerified">Verified</span>
+        </div>
+
+        <div class="farmer-card-body">
+          <div class="farmer-card-info">
+            <span class="farmer-card-label">Farmer</span>
+            <h1 id="cardName" class="farmer-card-name"></h1>
+            <p class="farmer-card-id">ID <span id="cardCode" class="mono"></span></p>
+
+            <div class="farmer-card-rows">
+              <div class="farmer-card-row">
+                <span class="fact-label">Enterprise</span>
+                <span id="cardEnterprise" class="fact-value"></span>
+              </div>
+              <div class="farmer-card-row">
+                <span class="fact-label">Location</span>
+                <span id="cardLocation" class="fact-value"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="farmer-card-qr">
+            <img id="cardQr" alt="QR code to public profile" width="140" height="140">
+            <span class="farmer-card-qr-url mono" id="cardProfileUrl"></span>
+          </div>
+        </div>
+
+        <div class="farmer-card-footer">
+          <p>Scan to see verified interventions, evidence and progression — Verified Progression Infrastructure by CII.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer no-print">
+  <div class="container footer__bottom" style="border-top:none;">
+    <span>&copy; 2026 CIIcore.</span>
+  </div>
+</footer>
+
+<script src="/farmer/farmer.js"></script>
+</body>
+</html>
       <p class="section-lead">This farmer code doesn't match a verified profile.</p>
       <a href="/" class="btn btn-ghost">Back to CII Core</a>
     </div>
