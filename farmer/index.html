@@ -6,51 +6,50 @@
 <title>Verified Farmer Profile | CII VPI</title>
 <meta name="description" content="Verified Progression Infrastructure — public farmer profile showing verified interventions, evidence and progression.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/farmer/farmer.css">
 </head>
-<body data-page="profile">
-
-<div class="grid-overlay" aria-hidden="true"></div>
+<body>
 
 <header class="site-header">
-  <nav class="nav" aria-label="Primary">
+  <div class="container header__inner">
     <a href="/" class="brand">
-      <span class="brand-mark" aria-hidden="true">◈</span>
-      <span class="brand-text">CII<span class="brand-sub">CORE</span></span>
+      <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+      <span class="brand__name">CI<b>I</b>core</span>
     </a>
-    <span class="vpi-tag">Verified Progression Infrastructure</span>
-  </nav>
+    <span class="vpi-tag" style="margin-left:auto;">Verified Progression Infrastructure</span>
+  </div>
 </header>
 
-<main id="main" class="farmer-main">
-  <div class="container narrow">
+<main id="main">
 
-    <div id="farmerLoading" class="state-panel">
-      <span class="terminal-caret" aria-hidden="true">▌</span> Loading verified farmer profile…
+  <div id="farmerLoading" class="state-panel">
+    <span class="terminal-caret" aria-hidden="true">▌</span> Loading verified farmer profile…
+  </div>
+
+  <div id="farmerNotFound" class="state-panel" hidden>
+    <div class="container narrow">
+      <h1>Farmer profile not found</h1>
+      <p>We couldn't find a verified farmer profile for <strong id="farmerNotFoundCode"></strong>. Check the code on the farmer card, or scan the QR again.</p>
+      <a href="/" class="btn btn--outline">Back to CII Core</a>
     </div>
+  </div>
 
-    <div id="farmerNotFound" class="state-panel" hidden>
-      <h1 class="section-title">Farmer profile not found</h1>
-      <p class="section-lead">
-        We couldn't find a verified farmer profile for
-        <strong id="farmerNotFoundCode"></strong>. Check the code on the farmer card, or scan the QR again.
-      </p>
-      <a href="/" class="btn btn-ghost">Back to CII Core</a>
-    </div>
+  <div id="farmerContent" hidden>
 
-    <div id="farmerContent" class="farmer-content" hidden>
-
-      <div class="profile-head">
+    <section class="farmer-hero">
+      <div class="container farmer-hero-inner">
         <div>
           <span id="verifiedBadge" class="verified-badge">Verified Farmer</span>
-          <h1 id="farmerName" class="section-title profile-name"></h1>
+          <h1 id="farmerName" class="profile-name"></h1>
           <p class="profile-code">Farmer ID <span id="farmerCode" class="mono"></span></p>
         </div>
-        <a id="cardLink" href="#" class="btn btn-ghost">View printable card</a>
+        <a id="cardLink" href="#" class="btn btn--outline">View printable card</a>
       </div>
+    </section>
+
+    <div class="container farmer-content">
 
       <div class="profile-grid">
         <div class="profile-fact">
@@ -71,7 +70,7 @@
         </div>
       </div>
 
-      <section class="panel">
+      <section class="panel" style="margin-top:28px;">
         <div class="panel-head">
           <h2>Progression status</h2>
           <span id="progressionStatus" class="status-pill"></span>
@@ -134,7 +133,7 @@
           <div class="flow-arrow" aria-hidden="true">→</div>
           <div class="flow-step flow-step-core"><span>Progression</span></div>
         </div>
-        <p class="section-lead vpi-copy">
+        <p class="vpi-copy">
           Every field on this page traces back to a verified record — an intervention that was assigned,
           evidence that was submitted, and a verification step that confirmed it happened. Nothing here is
           self-reported without a check. This is what VPI makes visible: not just that support was given,
@@ -144,19 +143,16 @@
 
     </div>
   </div>
+
 </main>
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="brand-mark" aria-hidden="true">◈</span>
-      <span class="brand-text">CII<span class="brand-sub">CORE</span></span>
-    </div>
-    <p class="footer-tag">Verified Progression Infrastructure. Public profile fields only — no private data is shown here.</p>
-    <p class="footer-copy">&copy; <span id="year"></span> CII Core.</p>
+  <div class="container footer__bottom" style="border-top:none;">
+    <span>Verified Progression Infrastructure. Public profile fields only — no private data is shown here.</span>
+    <span>&copy; 2026 CIIcore.</span>
   </div>
 </footer>
 
 <script src="/farmer/farmer.js"></script>
 </body>
-  </html>
+</html>
