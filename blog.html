@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CII Pulse — Notes for Nigerian business owners</title>
+<meta name="description" content="Practical notes on running a business in Nigeria — WhatsApp, customers, storefronts, and staying on top of the numbers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F1EAD9;
+    --ink: #1B241D;
+    --forest: #2E5741;
+    --forest-deep: #1E3C2C;
+    --clay: #BD5A28;
+    --gold: #A97A24;
+    --line: #D7CBAE;
+    --card: #FBF8F0;
+    box-sizing: border-box;
+  }
+  * { box-sizing: inherit; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+  /* Masthead */
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 28px 0 22px;
+  }
+  header.masthead .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .site-name {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .site-tagline {
+    font-size: 0.9rem;
+    color: var(--forest-deep);
+    max-width: 34ch;
+    text-align: right;
+    margin: 0;
+  }
+  @media (max-width: 560px) {
+    .site-tagline { text-align: left; max-width: none; }
+  }
+
+  main { padding: 36px 0 80px; }
+
+  /* Featured post */
+  .featured { display: block; text-decoration: none; margin-bottom: 48px; }
+  .featured img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover;
+    border-radius: 2px;
+    background: var(--line);
+    display: block;
+    margin-bottom: 18px;
+  }
+  .featured h1 {
+    font-family: "Fraunces", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .featured .excerpt {
+    font-size: 1.05rem;
+    color: #3B4A3E;
+    max-width: 58ch;
+    margin: 0 0 10px;
+  }
+  .meta {
+    font-size: 0.82rem;
+    color: var(--forest-deep);
+  }
+
+  /* Reading list */
+  .list-heading {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0 0 4px;
+    padding-top: 8px;
+  }
+  ul.reading-list { list-style: none; margin: 8px 0 0; padding: 0; }
+  ul.reading-list li {
+    border-top: 1px solid var(--line);
+    padding: 20px 0;
+  }
+  ul.reading-list li:last-child { border-bottom: 1px solid var(--line); }
+  .entry { display: flex; gap: 20px; text-decoration: none; align-items: flex-start; }
+  .entry-text { flex: 1; min-width: 0; }
+  .entry h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .entry .excerpt { font-size: 0.94rem; color: #4A574C; margin: 0 0 8px; }
+  .entry img {
+    width: 92px; height: 92px; object-fit: cover; border-radius: 2px;
+    flex-shrink: 0; background: var(--line);
+  }
+  @media (max-width: 480px) {
+    .entry img { width: 68px; height: 68px; }
+    .entry h2 { font-size: 1.06rem; }
+  }
+
+  /* Article view */
+  .article { display: none; }
+  .article.active { display: block; }
+  #home.hidden { display: none; }
+  .back-link {
+    display: inline-block; margin-bottom: 22px;
+    font-size: 0.9rem; color: var(--forest-deep); text-decoration: none;
+    border-bottom: 1px solid var(--forest-deep);
+  }
+  .article img.hero { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 2px; margin-bottom: 22px; background: var(--line); }
+  .article h1 {
+    font-family: "Fraunces", serif; font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.1;
+    letter-spacing: -0.015em; margin: 0 0 10px;
+  }
+  .article .meta { margin-bottom: 28px; }
+  .article .body { font-size: 1.05rem; color: #263329; max-width: 66ch; }
+  .article .body p { margin: 0 0 1.2em; }
+  .article .body h2 { font-family: "Fraunces", serif; font-size: 1.3rem; margin: 1.6em 0 0.6em; }
+  .article .body h3 { font-family: "Fraunces", serif; font-size: 1.1rem; margin: 1.4em 0 0.5em; }
+
+  .empty, .loading { color: var(--forest-deep); font-size: 0.95rem; padding: 40px 0; }
+
+  footer { border-top: 1px solid var(--line); padding: 24px 0; font-size: 0.82rem; color: var(--forest-deep); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .featured, .entry { transition: opacity 0.15s ease; }
+    .featured:hover, .entry:hover { opacity: 0.86; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="site-name"><a href="index.html" style="text-decoration:none;color:inherit;">CII Pulse</a></p>
+    <p class="site-tagline">Notes for people running a business in Nigeria — WhatsApp, customers, and staying on top of the numbers.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="home">
+    <div id="content-area" class="loading">Loading posts&hellip;</div>
+  </div>
+
+  <div id="article-container"></div>
+</main>
+
+<footer class="wrap">
+  CII Pulse — part of CII BusinessLink.
+</footer>
+
+<script>
+(function () {
+  var SUPABASE_URL = "https://jmltamnqlqewwsqvcvme.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_QwCPLC4A9cTLtMXDXsTGdg_Pya6NdCA";
+
+  var contentArea = document.getElementById("content-area");
+  var homeEl = document.getElementById("home");
+  var articleContainer = document.getElementById("article-container");
+  var posts = [];
+
+  function esc(s) {
+    var d = document.createElement("div");
+    d.textContent = s == null ? "" : s;
+    return d.innerHTML;
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  // Minimal markdown-ish renderer: paragraphs + ## / ### headings. Content is
+  // written by the drafting pipeline, not arbitrary user input, but we still
+  // escape everything before re-inserting any markup.
+  function renderBody(md) {
+    var lines = String(md || "").split(/\n+/);
+    return lines.map(function (line) {
+      line = line.trim();
+      if (!line) return "";
+      if (line.indexOf("### ") === 0) return "<h3>" + esc(line.slice(4)) + "</h3>";
+      if (line.indexOf("## ") === 0) return "<h2>" + esc(line.slice(3)) + "</h2>";
+      return "<p>" + esc(line) + "</p>";
+    }).join("");
+  }
+
+  function renderHome() {
+    if (!posts.length) {
+      contentArea.innerHTML = '<p class="empty">Nothing published yet — check back soon.</p>';
+      return;
+    }
+    var featured = posts[0];
+    var rest = posts.slice(1);
+
+    var html = "";
+    html += '<a class="featured" href="#post-' + esc(featured.slug) + '">';
+    if (featured.featured_image) {
+      html += '<img src="' + esc(featured.featured_image) + '" alt="">';
+    }
+    html += '<h1>' + esc(featured.title) + '</h1>';
+    if (featured.excerpt) html += '<p class="excerpt">' + esc(featured.excerpt) + '</p>';
+    html += '<p class="meta">' + fmtDate(featured.published_at) + '</p>';
+    html += '</a>';
+
+    if (rest.length) {
+      html += '<p class="list-heading">More posts</p>';
+      html += '<ul class="reading-list">';
+      rest.forEach(function (p) {
+        html += '<li><a class="entry" href="#post-' + esc(p.slug) + '">';
+        html += '<div class="entry-text">';
+        html += '<h2>' + esc(p.title) + '</h2>';
+        if (p.excerpt) html += '<p class="excerpt">' + esc(p.excerpt) + '</p>';
+        html += '<p class="meta">' + fmtDate(p.published_at) + '</p>';
+        html += '</div>';
+        if (p.featured_image) html += '<img src="' + esc(p.featured_image) + '" alt="">';
+        html += '</a></li>';
+      });
+      html += '</ul>';
+    }
+    contentArea.innerHTML = html;
+  }
+
+  function renderArticle(post) {
+    var html = '<div class="article active">';
+    html += '<a class="back-link" href="#">&larr; All posts</a>';
+    if (post.featured_image) html += '<img class="hero" src="' + esc(post.featured_image) + '" alt="">';
+    html += '<h1>' + esc(post.title) + '</h1>';
+    html += '<p class="meta">' + fmtDate(post.published_at) + '</p>';
+    html += '<div class="body">' + renderBody(post.content) + '</div>';
+    html += '</div>';
+    articleContainer.innerHTML = html;
+    document.title = post.title + " — CII Pulse";
+  }
+
+  function route() {
+    var hash = window.location.hash || "";
+    if (hash.indexOf("#post-") === 0) {
+      var slug = hash.slice(6);
+      var post = posts.filter(function (p) { return p.slug === slug; })[0];
+      if (post) {
+        homeEl.classList.add("hidden");
+        renderArticle(post);
+        window.scrollTo(0, 0);
+        return;
+      }
+    }
+    homeEl.classList.remove("hidden");
+    articleContainer.innerHTML = "";
+    document.title = "CII Pulse — Notes for Nigerian business owners";
+  }
+
+  window.addEventListener("hashchange", route);
+
+  fetch(
+    SUPABASE_URL + "/rest/v1/blog_posts?select=title,slug,excerpt,content,featured_image,published_at&status=eq.published&order=published_at.desc",
+    { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
+  )
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      posts = Array.isArray(data) ? data : [];
+      renderHome();
+      route();
+    })
+    .catch(function () {
+      contentArea.innerHTML = '<p class="empty">Couldn\'t load posts right now — please try again shortly.</p>';
+    });
+})();
+</script>
+
+</body>
+</html>
