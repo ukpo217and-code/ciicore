@@ -1,1 +1,336 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ImpactPulse by CII | Continuous Programme Engagement & Verified Progress</title>
+<meta name="description" content="ImpactPulse helps NGOs, CSOs, development partners and programme implementers continuously engage participants, capture evidence and track progression before, during and after programmes.">
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove once copy/name approved -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Additions for the interactive Challenge Builder only — everything else uses styles.css as-is */
+.cb-wrap{display:grid;gap:24px;grid-template-columns:1fr 1fr;align-items:start}
+@media (max-width:900px){.cb-wrap{grid-template-columns:1fr}}
+.cb-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:14px}
+.cb-field label{display:block;font-size:.8rem;font-weight:600;color:var(--text-soft);margin-bottom:5px}
+.cb-field input,.cb-field textarea{width:100%;font-family:var(--font-body);font-size:.92rem;padding:10px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--border-2);background:var(--bg);color:var(--text)}
+.cb-field textarea{resize:vertical;min-height:56px}
+.cb-check-row{display:flex;flex-wrap:wrap;gap:8px}
+.cb-check{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;background:var(--bg);border:1.5px solid var(--border-2);border-radius:999px;padding:6px 12px;cursor:pointer}
+.cb-check input{margin:0}
+.cb-check:has(input:checked){border-color:var(--signal);background:var(--signal-soft);color:var(--signal)}
+.cb-list{display:flex;flex-direction:column;gap:14px}
+.cb-card{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:20px}
+.cb-card h4{color:#fff;font-family:var(--font-display);font-size:1.05rem;margin-bottom:6px}
+.cb-card p{color:#AEB8D4;font-size:.86rem;margin:0 0 10px}
+.cb-card .tags span{font-family:var(--font-mono);font-size:.7rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:3px 8px;border-radius:7px;color:#DDEAFF;margin:0 6px 6px 0;display:inline-block}
+.cb-status{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#5FE0D6}
+.cb-empty{color:var(--text-faint);font-size:.88rem;padding:20px;text-align:center;border:1.5px dashed var(--border-2);border-radius:var(--radius-lg)}
+.cb-note{font-size:.8rem;color:var(--text-faint);margin-top:6px}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header__inner">
+    <a href="index.html" class="brand">
+      <span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></span>
+      <span class="brand__name">CI<b>I</b>core</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-item"><button aria-expanded="false">Product <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <a href="what-is-cii.html">What is CII? <span>The infrastructure layer, explained</span></a>
+          <a href="pulse-platform.html">Pulse Platform <span>One engine, every domain</span></a>
+          <a href="index.html#marketplace">Marketplace &amp; Intent Exchange <span>Opportunity matching, live</span></a>
+        </div>
+      </div>
+      <div class="nav-item"><button aria-expanded="false">Solutions <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega mega--wide">
+          <a href="pulse-platform.html#farmerpulse">FarmerPulse <span>Agriculture &amp; agribusiness</span></a>
+          <a href="pulse-platform.html#govpulse">GovPulse <span>Government &amp; public service</span></a>
+          <a href="pulse-platform.html#healthpulse">HealthPulse <span>Health systems &amp; NGOs</span></a>
+          <a href="pulse-platform.html#edupulse">EduPulse <span>Education &amp; training</span></a>
+          <a href="pulse-platform.html#businesspulse">BusinessPulse <span>SMEs &amp; enterprise</span></a>
+          <a href="impactpulse.html">ImpactPulse <span>NGOs, CSOs &amp; development programmes</span></a>
+          <a href="pulse-platform.html#more">ResearchPulse, EnterprisePulse <span>See the remaining two</span></a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="header__actions">
+      <a href="contact.html" class="btn btn--ghost">Contact</a>
+      <a href="get-started.html" class="btn btn--primary">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <p class="eyebrow">ImpactPulse &middot; powered by IVPI</p>
+    <h1 class="hero__headline">Turn development programmes into <span class="hl">continuously verified progress.</span></h1>
+    <p class="hero__sub">ImpactPulse gives NGOs, CSOs, development partners and implementing organisations a persistent engagement and evidence layer, connecting participants before, during and after a programme.</p>
+    <div class="hero__actions">
+      <a href="contact.html?subject=ImpactPulse+pilot" class="btn btn--primary btn--lg">Discuss a Pilot</a>
+      <a href="#how" class="btn btn--outline btn--lg">See How It Works</a>
+    </div>
+    <div class="hero__trust">
+      <span>Captured</span><span>Active</span><span>Verified</span><span>Ongoing</span>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="how">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">The problem</p><h2>A programme can end. Progress shouldn't.</h2><p>Engagement often clusters around baseline and endline; between and after those points the participant relationship goes thin.</p></div></div>
+    <div class="two-col">
+      <div class="arch-detail" style="background:var(--ink);">
+        <h4>Conventional programme</h4>
+        <p>Baseline &rarr; Programme activities &rarr; Endline survey &rarr; Report &rarr; Participant relationship often ends</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;">With ImpactPulse</h4>
+        <ul class="check-list">
+          <li>Participant onboarding, needs &amp; baseline</li>
+          <li>Programme activities</li>
+          <li>Incentivised actions</li>
+          <li>Evidence &amp; verified progression</li>
+          <li>Follow-up &amp; persistent participant record</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--alt">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">What it enables</p><h2>One continuous layer around the programme.</h2></div></div>
+    <div class="value-grid">
+      <div class="value-card"><h3>01 &middot; Engage</h3><p>Onboard participants and maintain an active relationship throughout the programme.</p></div>
+      <div class="value-card"><h3>02 &middot; Incentivise</h3><p>Turn desired programme behaviours into structured challenges and incentives.</p></div>
+      <div class="value-card"><h3>03 &middot; Verify</h3><p>Collect evidence as activities happen, not only through retrospective reporting.</p></div>
+      <div class="value-card"><h3>04 &middot; Track</h3><p>Maintain participant progression and programme activity over time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="builder">
+  <div class="container">
+    <p class="eyebrow">Challenge Builder</p>
+    <div class="section-head"><div><h2>Turn programme objectives into actionable challenges.</h2><p>Define what needs to be done, what evidence is required, and how progression is verified &mdash; per programme.</p></div></div>
+
+    <div class="cb-wrap">
+      <form class="cb-form" id="cbForm">
+        <div class="cb-field"><label for="cbTitle">Challenge title</label><input id="cbTitle" required placeholder="Complete your first farm record"></div>
+        <div class="cb-field"><label for="cbObjective">Objective</label><textarea id="cbObjective" required placeholder="Help participating farmers establish a basic farm activity record."></textarea></div>
+        <div class="cb-field"><label for="cbAction">Participant action</label><input id="cbAction" required placeholder="Submit farm information"></div>
+        <div class="cb-field"><label>Evidence required</label>
+          <div class="cb-check-row">
+            <label class="cb-check"><input type="checkbox" name="evidence" value="Photo" checked>Photo</label>
+            <label class="cb-check"><input type="checkbox" name="evidence" value="Response">Response</label>
+            <label class="cb-check"><input type="checkbox" name="evidence" value="Location/context">Location/context</label>
+            <label class="cb-check"><input type="checkbox" name="evidence" value="Supporting document">Supporting document</label>
+          </div>
+        </div>
+        <div class="cb-field"><label>Verification</label>
+          <div class="cb-check-row">
+            <label class="cb-check"><input type="checkbox" name="verify" value="Manual review" checked>Manual review</label>
+            <label class="cb-check"><input type="checkbox" name="verify" value="Rule-based validation">Rule-based validation</label>
+            <label class="cb-check"><input type="checkbox" name="verify" value="Officer confirmation">Officer confirmation</label>
+          </div>
+        </div>
+        <div class="cb-field"><label>Incentive, released on verification</label>
+          <div class="cb-check-row">
+            <label class="cb-check"><input type="checkbox" name="reward" value="Points" checked>Points</label>
+            <label class="cb-check"><input type="checkbox" name="reward" value="Recognition">Recognition</label>
+            <label class="cb-check"><input type="checkbox" name="reward" value="Access to next activity">Access to next activity</label>
+            <label class="cb-check"><input type="checkbox" name="reward" value="Opportunity">Opportunity</label>
+          </div>
+        </div>
+        <div class="cb-field"><label for="cbDeadline">Deadline</label><input id="cbDeadline" placeholder="Programme-defined"></div>
+        <button type="submit" class="btn btn--primary">Create Challenge</button>
+        <p class="cb-note">This builder is live on the page — it renders challenges into the list on the right as you create them. It does not yet save anywhere: nothing here is written to a database, and the list resets on reload.</p>
+      </form>
+
+      <div>
+        <h3 style="font-size:.95rem;color:var(--text-soft);margin-bottom:14px;">Challenges created this session</h3>
+        <div class="cb-list" id="cbList">
+          <div class="cb-empty" id="cbEmpty">No challenges yet &mdash; create one on the left.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="color:var(--text-faint);font-size:.85rem;margin-top:24px;">Illustrative example challenges: document a farm activity (agriculture), complete a first skills assignment (youth), register a business activity (entrepreneurship), complete a first income-generating activity (women's economic empowerment), document a community action, complete a learning activity (education).</p>
+  </div>
+</section>
+
+<section class="content-section content-section--alt">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Why it matters</p><h2>From objective to observable progression.</h2><p>"Improve agricultural practices" becomes: complete training &rarr; apply the practice &rarr; submit evidence &rarr; receive verification &rarr; complete the next milestone.</p></div></div>
+    <div class="two-col">
+      <div class="arch-detail" style="background:var(--ink);">
+        <h4>Example pathway &middot; 12-week livelihood programme</h4>
+        <p>Week 1 onboarding &middot; Week 2 baseline &middot; Week 3 training &middot; Week 5 evidence &middot; Week 6 verification &middot; Week 7 milestone &middot; Week 12 programme milestone &middot; After: follow-up, new opportunity, continued engagement.</p>
+      </div>
+      <ul class="check-list">
+        <li>Challenge 1 &middot; not started</li>
+        <li>Challenge 2 &middot; in progress</li>
+        <li>Challenge 3 &middot; evidence submitted</li>
+        <li>Challenge 4 &middot; verified</li>
+        <li>Milestone reached &middot; next opportunity open</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="record">
+  <div class="container two-col">
+    <div>
+      <p class="eyebrow">Persistent participant memory</p>
+      <h2>The participant record doesn't disappear at endline.</h2>
+      <p style="color:var(--text-soft);margin-top:14px;">Profile, needs, baseline, activities, evidence, milestones, progression and follow-up &mdash; with participant consent. The programme may end; the relationship can continue.</p>
+      <ul class="check-list" style="margin-top:16px;">
+        <li>WhatsApp as one possible, low-friction access channel &mdash; not the whole product</li>
+        <li>Don't just ask participants to respond: give them reasons to act</li>
+        <li>Incentives: recognition, access, opportunity, rewards, progression &mdash; not only cash</li>
+      </ul>
+    </div>
+    <div class="arch-detail" style="background:var(--ink);">
+      <h4>Evidence becomes part of the journey</h4>
+      <p>Action &rarr; Evidence &rarr; Verification &rarr; Milestone &rarr; Progress. Evidence can include photos, documents, responses, activity records, location/context and completion records. We make no claims about automated verification accuracy.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--alt" id="intelligence">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Programme intelligence</p><h2>From programme reporting to programme intelligence.</h2></div></div>
+    <div class="two-col">
+      <div class="arch-detail" style="background:var(--surface);border:1.5px solid var(--border);color:var(--text);"><h4 style="color:var(--text);">Traditional reporting</h4><p style="color:var(--text-soft);">How many people participated?</p></div>
+      <div class="arch-detail" style="background:var(--ink);"><h4>ImpactPulse</h4><p>Who participated, what did they do, where and when, what evidence exists, who is progressing, who needs follow-up, what happened after the programme.</p></div>
+    </div>
+    <p style="color:var(--text-faint);font-size:.85rem;margin-top:16px;">Illustrative example: a 12-week agricultural livelihoods programme &mdash; before (onboarding, baseline), during (training, challenges, evidence, verification), after (follow-up, continued engagement, progression record). No fabricated figures are shown.</p>
+  </div>
+</section>
+
+<section class="solutions" id="uses">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Who it's for</p><h2>Built for programmes where participation and progression matter.</h2></div></div>
+    <div class="solutions-grid">
+      <div class="solution-chip">Agriculture &amp; livelihoods</div>
+      <div class="solution-chip">Youth &amp; skills</div>
+      <div class="solution-chip">Women's economic empowerment</div>
+      <div class="solution-chip">Community development</div>
+      <div class="solution-chip">Education</div>
+      <div class="solution-chip">Health programmes</div>
+      <div class="solution-chip">Entrepreneurship</div>
+      <div class="solution-chip">NGO &amp; CSO portfolios</div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section content-section--alt">
+  <div class="container">
+    <div class="section-head"><div><p class="eyebrow">Who benefits</p><h2>ImpactPulse vs. CRM</h2></div></div>
+    <div class="two-col">
+      <div class="arch-detail" style="background:var(--surface);border:1.5px solid var(--border);color:var(--text);"><h4 style="color:var(--text);">CRM</h4><p style="color:var(--text-soft);">Who are my contacts? How do I manage the relationship?</p></div>
+      <div class="arch-detail" style="background:var(--ink);"><h4>ImpactPulse</h4><p>What is this participant trying to achieve? What action did they complete? What evidence exists? What should happen next? ImpactPulse can incorporate CRM-like capabilities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="lifecycle">
+  <div class="container">
+    <p class="eyebrow eyebrow--onDark">Powered by IVPI</p>
+    <h2>Incentivised Verified Progression Infrastructure</h2>
+    <p style="color:#AEB8D4;max-width:640px;margin-top:10px;">ImpactPulse is built on CII's Incentivised Verified Progression Infrastructure &mdash; connecting participation, incentives, evidence and progression across the life of a programme.</p>
+    <p style="color:#AEB8D4;margin-top:18px;font-family:var(--font-mono);font-size:.85rem;">Participant identity &rarr; Engagement &rarr; Action &rarr; Evidence &rarr; Verification &rarr; Progression &rarr; Persistent record &rarr; Next opportunity</p>
+  </div>
+</section>
+
+<section class="final-cta" id="pilot">
+  <div class="container final-cta__inner">
+    <h2>Start with one programme.</h2>
+    <p>You don't need to transform your entire organisation to test ImpactPulse. Tell us what you're trying to achieve, who needs to participate, and what evidence matters.</p>
+    <div class="final-cta__actions">
+      <a href="contact.html?subject=ImpactPulse+pilot" class="btn btn--pulse btn--lg">Discuss a Pilot</a>
+      <a href="get-started.html" class="btn btn--outline btn--onDark btn--lg">Get Started</a>
+    </div>
+    <p style="color:#7C88AC;font-size:.8rem;margin-top:22px;">Participant data, photos and location are personal data. Workflows are designed around consent, retention and safeguarding for each programme, including those involving minors.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <span class="brand__name">CI<b>I</b>core</span>
+      <p>ImpactPulse by CII, powered by IVPI. Illustrative examples on this page are not programme results.</p>
+    </div>
+    <div><h4>Product</h4><a href="what-is-cii.html">What is CII?</a><a href="pulse-platform.html">Pulse Platform</a><a href="index.html#marketplace">Intent Exchange</a></div>
+    <div><h4>Solutions</h4><a href="pulse-platform.html#farmerpulse">FarmerPulse</a><a href="impactpulse.html">ImpactPulse</a><a href="pulse-platform.html#more">ResearchPulse</a></div>
+    <div><h4>Developers</h4><a href="developers.html">API Reference</a><a href="developers.html#docs">Documentation</a></div>
+    <div><h4>Company</h4><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a href="get-started.html">Get Started</a></div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 CIIcore. Conversational Intelligence Infrastructure.</span>
+    <span>Lagos &middot; Abuja &middot; Remote-first</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('cbForm');
+  var list = document.getElementById('cbList');
+  var empty = document.getElementById('cbEmpty');
+  var count = 0;
+
+  function checked(name){
+    return Array.prototype.slice.call(form.querySelectorAll('input[name="'+name+'"]:checked')).map(function(i){return i.value;});
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var title = document.getElementById('cbTitle').value.trim();
+    var objective = document.getElementById('cbObjective').value.trim();
+    var action = document.getElementById('cbAction').value.trim();
+    var deadline = document.getElementById('cbDeadline').value.trim() || 'Programme-defined';
+    if(!title || !objective || !action){ return; }
+
+    var evidence = checked('evidence'), verify = checked('verify'), reward = checked('reward');
+    count++;
+
+    var card = document.createElement('div');
+    card.className = 'cb-card';
+    card.innerHTML =
+      '<span class="cb-status">Draft &middot; #' + count + '</span>' +
+      '<h4>' + escapeHtml(title) + '</h4>' +
+      '<p>' + escapeHtml(objective) + '</p>' +
+      '<p style="color:#fff;font-size:.82rem;"><strong>Action:</strong> ' + escapeHtml(action) + ' &middot; <strong>Deadline:</strong> ' + escapeHtml(deadline) + '</p>' +
+      '<div class="tags">' +
+        evidence.map(function(v){return '<span>Evidence: '+escapeHtml(v)+'</span>';}).join('') +
+        verify.map(function(v){return '<span>Verify: '+escapeHtml(v)+'</span>';}).join('') +
+        reward.map(function(v){return '<span>Reward: '+escapeHtml(v)+'</span>';}).join('') +
+      '</div>';
+
+    list.insertBefore(card, list.firstChild);
+    if(empty) empty.style.display = 'none';
+    form.reset();
+    document.getElementById('cbTitle').focus();
+  });
+
+  function escapeHtml(s){
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+})();
+</script>
+</body>
+</html>
