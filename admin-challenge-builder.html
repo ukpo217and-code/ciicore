@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ImpactPulse — Challenge Builder (Admin)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+.admin-wrap{max-width:640px;margin:0 auto;padding:64px 24px}
+.gate,.builder{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px}
+.gate input{width:100%;font-size:.95rem;padding:11px 13px;border-radius:var(--radius-sm);border:1.5px solid var(--border-2);background:var(--bg);color:var(--text);margin-bottom:12px}
+.msg{font-size:.85rem;color:var(--text-soft);margin-top:10px}
+.msg.err{color:#C0392B}
+.msg.ok{color:var(--pulse-2)}
+.hidden{display:none}
+.cb-field{margin-bottom:14px}
+.cb-field label{display:block;font-size:.8rem;font-weight:600;color:var(--text-soft);margin-bottom:5px}
+.cb-field input,.cb-field select,.cb-field textarea{width:100%;font-size:.92rem;padding:10px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--border-2);background:var(--bg);color:var(--text)}
+.who{font-size:.82rem;color:var(--text-faint);margin-bottom:20px}
+</style>
+</head>
+<body>
+<div class="admin-wrap">
+  <p class="breadcrumb"><a href="index.html">CIIcore</a> / ImpactPulse / Admin</p>
+  <h2>Challenge Builder</h2>
+  <p class="who">Signed-in, platform-admin only. Not linked from the public site.</p>
+
+  <div class="gate" id="gate">
+    <div id="loginForm">
+      <label style="font-size:.8rem;font-weight:600;color:var(--text-soft);">Email</label>
+      <input id="email" type="email" placeholder="you@ciicore.com">
+      <button class="btn btn--primary btn--block" id="sendLink">Send magic link</button>
+      <p class="msg" id="loginMsg"></p>
+    </div>
+  </div>
+
+  <div class="builder hidden" id="builder">
+    <p class="who" id="whoami"></p>
+    <div class="cb-field"><label>Program slug</label><input id="programSlug" placeholder="e.g. teacher_renewal"></div>
+    <div class="cb-field"><label>Stage key</label>
+      <select id="stageKey"><option value="">Load a program slug above, or type one manually below</option></select>
+      <input id="stageKeyManual" placeholder="or type stage key manually" style="margin-top:6px;">
+    </div>
+    <div class="cb-field"><label>Requirement key (lowercase, underscores)</label><input id="reqKey" placeholder="submit_farm_record"></div>
+    <div class="cb-field"><label>Challenge title</label><input id="reqName" placeholder="Complete your first farm record"></div>
+    <div class="cb-field"><label>Evidence type</label><input id="evidenceType" placeholder="photo / response / document"></div>
+    <div class="cb-field"><label>Reviewer role</label><input id="reviewerRole" value="officer"></div>
+    <div class="cb-field"><label>Minimum evidence items</label><input id="minEvidence" type="number" value="1" min="0"></div>
+    <div class="cb-field"><label><input type="checkbox" id="mandatory" checked style="width:auto;margin-right:6px;">Mandatory</label></div>
+    <button class="btn btn--primary" id="createBtn">Create Challenge</button>
+    <p class="msg" id="builderMsg"></p>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://jmltamnqlqewwsqvcvme.supabase.co";
+const SUPABASE_KEY = "sb_publishable_QwCPLC4A9cTLtMXDXsTGdg_Pya6NdCA";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = (id) => document.getElementById(id);
+
+async function refreshUI(){
+  const { data: { session } } = await sb.auth.getSession();
+  if(!session){
+    $('gate').classList.remove('hidden');
+    $('builder').classList.add('hidden');
+    return;
+  }
+  $('gate').classList.add('hidden');
+  $('builder').classList.remove('hidden');
+  $('whoami').textContent = 'Signed in as ' + session.user.email + '. The server re-checks platform-admin status on every submit — being signed in alone is not enough.';
+}
+
+$('sendLink').addEventListener('click', async () => {
+  const email = $('email').value.trim();
+  if(!email) return;
+  $('loginMsg').textContent = 'Sending...';
+  $('loginMsg').className = 'msg';
+  const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.href } });
+  $('loginMsg').textContent = error ? error.message : 'Check your email for a sign-in link.';
+  $('loginMsg').className = 'msg ' + (error ? 'err' : 'ok');
+});
+
+$('programSlug').addEventListener('change', async () => {
+  const slug = $('programSlug').value.trim();
+  const sel = $('stageKey');
+  sel.innerHTML = '<option value="">Loading...</option>';
+  if(!slug){ sel.innerHTML = '<option value="">Enter a program slug</option>'; return; }
+  const { data, error } = await sb.rpc('list_program_stages', { p_program_slug: slug }, { schema: 'vpi' });
+  if(error || !data || !data.length){
+    sel.innerHTML = '<option value="">No stages found — check the slug, or type one below</option>';
+    return;
+  }
+  sel.innerHTML = data.map(s => `<option value="${s.stage_key}">${s.stage_name} (${s.stage_key})</option>`).join('');
+});
+
+$('createBtn').addEventListener('click', async () => {
+  const stageKey = $('stageKeyManual').value.trim() || $('stageKey').value;
+  const payload = {
+    p_program_slug: $('programSlug').value.trim(),
+    p_stage_key: stageKey,
+    p_key: $('reqKey').value.trim(),
+    p_name: $('reqName').value.trim(),
+    p_evidence_type: $('evidenceType').value.trim() || null,
+    p_mandatory: $('mandatory').checked,
+    p_min_evidence: parseInt($('minEvidence').value || '1', 10),
+    p_reviewer_role: $('reviewerRole').value.trim() || 'officer',
+    p_config: {}
+  };
+  if(!payload.p_program_slug || !payload.p_stage_key || !payload.p_key || !payload.p_name){
+    $('builderMsg').textContent = 'Program slug, stage key, requirement key and title are required.';
+    $('builderMsg').className = 'msg err';
+    return;
+  }
+  $('builderMsg').textContent = 'Creating...';
+  $('builderMsg').className = 'msg';
+  const { data, error } = await sb.rpc('create_requirement', payload, { schema: 'vpi' });
+  if(error){
+    $('builderMsg').textContent = error.message;
+    $('builderMsg').className = 'msg err';
+    return;
+  }
+  $('builderMsg').textContent = 'Created. Requirement id: ' + data;
+  $('builderMsg').className = 'msg ok';
+});
+
+sb.auth.onAuthStateChange(() => refreshUI());
+refreshUI();
+</script>
+</body>
+</html>
