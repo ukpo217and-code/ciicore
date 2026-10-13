@@ -31,13 +31,14 @@
 </div><div class="actions"><button class="primary" id="setPassword" type="button">Set new password</button></div></div>
 </div>
 <div class="status" id="recoveryStatus" role="status"></div></section>
-<section class="panel"><h2>2. Configure FarmerPulse</h2><p class="hint">This starter template is editable. The external account ID is Meta’s WhatsApp Phone Number ID, not the visible phone number. The organisation ID must be the organisation you are authorised to administer.</p>
+<section class="panel"><h2>2. Configure disposable IVPI acceptance test</h2><p class="hint">This template is for an isolated acceptance test, not the live FarmerPulse programme. Confirm the Meta WhatsApp Phone Number ID before submitting. Do not use the visible WhatsApp phone number. The organisation ID must be the organisation you are authorised to administer.</p>
 <div class="grid">
 <div class="field full"><label for="orgId">Organisation UUID</label><input id="orgId" value="c9a770e4-e262-435a-83ba-f8f760826b81"></div>
-<div class="field"><label for="programName">Programme name</label><input id="programName" value="FarmerPulse"></div>
-<div class="field"><label for="slug">Programme slug</label><input id="slug" value="farmerpulse"></div>
-<div class="field"><label for="keyword">WhatsApp trigger keyword</label><input id="keyword" value="FARMERPULSE"></div>
-<div class="field"><label for="phoneId">Meta WhatsApp Phone Number ID</label><input id="phoneId" value="1094259663780371"></div>
+<div class="field"><label for="programName">Disposable programme name</label><input id="programName" value="IVPI E2E Acceptance Test 20261013"></div>
+<div class="field"><label for="slug">Disposable programme slug</label><input id="slug" value="ivpi_e2e_acceptance_20261013"></div>
+<div class="field"><label for="keyword">Unique WhatsApp trigger keyword</label><input id="keyword" value="IVPI_E2E_20261013_08035682845"></div>
+<div class="field"><label for="phoneId">Confirmed Meta WhatsApp Phone Number ID</label><input id="phoneId" value="" placeholder="Verify in Meta / channel account before submitting" required></div>
+<div class="field full"><label for="idempotencyKey">Idempotency key for this test</label><input id="idempotencyKey" value="ivpi-e2e-acceptance-20261013-08035682845-v1" autocomplete="off" required><p class="small">Keep this exact key for retries of this same test. Use a new key only for a genuinely new test run.</p></div>
 <div class="field full"><label for="advanced">Programme definition (JSON)</label><textarea id="advanced" spellcheck="false"></textarea><p class="small">Edit the JSON if your programme requires different stages, requirements, rewards, or WhatsApp settings. The backend validates it before provisioning.</p></div>
 </div><div class="actions"><button class="primary" id="provision" disabled>Validate and provision</button><button class="secondary" id="reset">Restore starter template</button></div><div class="status" id="provisionStatus" role="status"></div></section>
 </main>
@@ -56,7 +57,7 @@
   let recoveryVerified = false; // true only after Supabase has validated a recovery session
   let cooldownTimer = null;
   const template = () => ({
-    name: $('programName').value.trim() || 'FarmerPulse',
+    name: $('programName').value.trim() || 'IVPI E2E Acceptance Test 20261013',
     slug: $('slug').value.trim().toLowerCase().replace(/[^a-z0-9_]+/g,'_').replace(/^_+|_+$/g,''),
     stages: [
       {key:'onboarding',name:'Onboarding'},
@@ -72,7 +73,7 @@
     whatsapp: {
       trigger_keyword: $('keyword').value.trim().toUpperCase(),
       external_account_id: $('phoneId').value.trim(),
-      display_name: 'FarmerPulse'
+      display_name: 'IVPI E2E Acceptance Test'
     }
   });
   function show(id, message, ok=false) {
@@ -236,8 +237,8 @@
     }
   }
 
-  // ---- Provisioning (unchanged) ----------------------------------------------------------
-  $('reset').addEventListener('click',()=>{delete $('advanced').dataset.edited;renderTemplate();});
+  // ---- Disposable-test provisioning ------------------------------------------------------
+  $('reset').addEventListener('click',()=>{delete $('advanced').dataset.edited;$('programName').value='IVPI E2E Acceptance Test 20261013';$('slug').value='ivpi_e2e_acceptance_20261013';$('keyword').value='IVPI_E2E_20261013_08035682845';$('phoneId').value='';$('idempotencyKey').value='ivpi-e2e-acceptance-20261013-08035682845-v1';renderTemplate();});
   $('provision').addEventListener('click',async()=>{
     clear('provisionStatus');
     if(!client || !currentUser){show('provisionStatus','Sign in before provisioning.');return;}
@@ -245,12 +246,24 @@
     try{payload=JSON.parse($('advanced').value);}catch(e){show('provisionStatus','Programme JSON is invalid: '+e.message);return;}
     const organization_id=$('orgId').value.trim();
     if(!organization_id){show('provisionStatus','Organisation UUID is required.');return;}
+    const programmeName=$('programName').value.trim();
+    const programmeSlug=$('slug').value.trim().toLowerCase();
+    const trigger=$('keyword').value.trim().toUpperCase();
+    const phoneId=$('phoneId').value.trim();
+    const idempotencyKey=$('idempotencyKey').value.trim();
+    if(!programmeName||!programmeSlug||!trigger){show('provisionStatus','Programme name, slug and trigger are required.');return;}
+    if(programmeSlug==='farmerpulse'||trigger==='FARMERPULSE'||programmeName.toLowerCase()==='farmerpulse'){show('provisionStatus','Safety stop: this console only permits a distinct disposable programme. Do not use the live FarmerPulse name, slug or trigger.');return;}
+    if(!phoneId){show('provisionStatus','Safety stop: verify and enter the correct Meta WhatsApp Phone Number ID before provisioning.');return;}
+    if(!idempotencyKey){show('provisionStatus','An idempotency key is required.');return;}
+    if(!payload.whatsapp||String(payload.whatsapp.trigger_keyword||'').toUpperCase()!==trigger||String(payload.whatsapp.external_account_id||'').trim()!==phoneId){show('provisionStatus','The JSON definition does not match the visible trigger and Phone Number ID. Click Restore test template, then review your values.');return;}
+    if(!/^[a-z0-9_]{4,80}$/.test(programmeSlug)){show('provisionStatus','Use a slug containing 4–80 lowercase letters, digits or underscores.');return;}
+    if(!/^[A-Z0-9_]{4,80}$/.test(trigger)){show('provisionStatus','Use a trigger containing 4–80 letters, digits or underscores.');return;}
     const {data:sessionData,error:sessionError}=await client.auth.getSession();
     if(sessionError || !sessionData.session){show('provisionStatus','Your session is missing or expired. Sign in again.');return;}
     const button=$('provision');button.disabled=true;button.textContent='Submitting…';
     try{
       const {data,error}=await client.functions.invoke('ivpi-provision',{
-        body:{organization_id,payload,auto_provision:true,idempotency_key:'farmerpulse-initial-provision-v1'}
+        body:{organization_id,payload,auto_provision:true,idempotency_key:idempotencyKey}
       });
       if(error){let details=error.message||String(error);try{if(error.context){const body=await error.context.json();details=JSON.stringify(body,null,2);}}catch(_){}throw new Error(details);}
       const text=JSON.stringify(data,null,2);show('provisionStatus',text,!!(data&&data.ok));
