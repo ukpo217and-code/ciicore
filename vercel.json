@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/digicorper-console", "destination": "https://digicorper-console.vercel.app/" },
+    { "source": "/digicorper-console/", "destination": "https://digicorper-console.vercel.app/" },
     { "source": "/farmer/:code/card", "destination": "/farmer/card.html" },
     { "source": "/farmer/:code", "destination": "/farmer/index.html" }
   ]
