@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DigiCorper console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<style>
+:root{
+  --paper:#F2F5F3; --card:#FFFFFF; --ink:#16272B; --mute:#5B6C6E; --line:#D6DDD9;
+  --green:#0E6B4D; --green-soft:#DDEFE7; --amber:#9A5B00; --amber-soft:#FBEBCF;
+  --red:#A8322A; --red-soft:#F8E0DD; --blue:#245E8F;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.45;font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+h1{font-size:1.15rem;margin:0;font-weight:600}
+h2{font-size:1rem;margin:0;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:10px 14px;min-height:44px;cursor:pointer}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff;font-weight:500}
+.btn.warn{border-color:var(--amber);color:var(--amber)}
+.btn.danger{border-color:var(--red);color:var(--red)}
+.btn:disabled{opacity:.5;cursor:default}
+.link{background:none;border:0;color:var(--blue);padding:8px 0;min-height:44px;cursor:pointer;text-decoration:underline}
+nav{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+nav button{background:none;border:0;border-bottom:3px solid transparent;padding:12px 14px;min-height:44px;cursor:pointer;color:var(--mute);font-weight:500}
+nav button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--green)}
+.hidden{display:none!important}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.mute{color:var(--mute);font-size:.9rem}
+.lead{font-size:1.05rem;margin:0 0 4px}
+.lead b{font-size:1.6rem;font-weight:600}
+.bars{display:grid;grid-template-columns:7.5rem 1fr 2.5rem;gap:6px 10px;align-items:center;margin-top:10px;font-size:.9rem}
+.bars .track{height:10px;background:var(--paper);border-radius:5px;overflow:hidden}
+.bars .fill{height:100%;background:var(--green-soft)}
+.bars .fill.act{background:var(--green)}
+.bars .n{text-align:right}
+.tag{display:inline-block;border-radius:6px;padding:2px 8px;font-size:.8rem;background:var(--paper);color:var(--mute)}
+.tag.late{background:var(--red-soft);color:var(--red)}
+.tag.warn{background:var(--amber-soft);color:var(--amber)}
+.filters{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+select,input,textarea{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;width:100%}
+select{width:auto}
+.media{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.media img{width:96px;height:96px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.media audio{width:100%}
+.resp{white-space:pre-wrap;word-break:break-word;margin:10px 0;padding:10px;background:var(--paper);border-radius:6px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.reason{margin-top:10px}
+.err{color:var(--red);margin:8px 0}
+.note{padding:10px;border-radius:6px;background:var(--amber-soft);color:var(--amber);margin:10px 0;font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw}
+#toast.on{opacity:1}
+label{display:block;margin:10px 0 4px;font-weight:500}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+// ---- Configuration: set the anon (publishable) key. The URL is the CIICore_Pulse project.
+const CFG = {
+  url: "https://jmltamnqlqewwsqvcvme.supabase.co",
+  anonKey: "sb_publishable_QwCPLC4A9cTLtMXDXsTGdg_Pya6NdCA",
+  fn: "digicorper-console",
+};
+const sb = supabase.createClient(CFG.url, CFG.anonKey);
+
+// ---- Helpers (DOM is built with textContent only, so submitted text can never run as HTML)
+function h(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v === false || v == null) continue;
+    if (k === "class") e.className = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) e.append(k.nodeType ? k : document.createTextNode(String(k)));
+  return e;
+}
+const app = document.getElementById("app");
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("on"), 3000);
+}
+async function api(action, params = {}) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) throw { code: "UNAUTHENTICATED", message: "Sign in again" };
+  let r;
+  try {
+    r = await fetch(`${CFG.url}/functions/v1/${CFG.fn}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${session.access_token}`, apikey: CFG.anonKey, "Content-Type": "application/json" },
+      body: JSON.stringify({ action, params }),
+    });
+  } catch { throw { code: "NETWORK", message: "No connection. Check your data and retry." }; }
+  const j = await r.json().catch(() => null);
+  if (!j || !j.ok) throw (j && j.error) || { code: "INTERNAL", message: "Unexpected response" };
+  return j.data;
+}
+const pct = v => v == null ? "-" : Math.round(v * 100) + "%";
+
+// ---- Sign in
+function showLogin(msg) {
+  const email = h("input", { type: "email", id: "em", autocomplete: "username", required: true });
+  const pw = h("input", { type: "password", id: "pw", autocomplete: "current-password", required: true });
+  const err = h("div", { class: "err", role: "alert" }, msg || "");
+  const go = h("button", { class: "btn primary", type: "submit" }, "Sign in");
+  const form = h("form", { onsubmit: async (e) => {
+    e.preventDefault(); go.disabled = true; err.textContent = "";
+    const { error } = await sb.auth.signInWithPassword({ email: email.value.trim(), password: pw.value });
+    if (error) { err.textContent = "Email or password is incorrect."; go.disabled = false; } else showApp();
+  } },
+    h("label", { for: "em" }, "Email"), email,
+    h("label", { for: "pw" }, "Password"), pw, err, go);
+  app.replaceChildren(h("header", {}, h("h1", {}, "DigiCorper console")), h("div", { class: "card" }, form));
+}
+
+// ---- Shell
+const state = { funnel: null, review: null };
+async function showApp() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return showLogin();
+  const tabF = h("button", { role: "tab", id: "t-funnel", "aria-selected": "false", class: "hidden", onclick: () => pick("funnel") }, "Funnel");
+  const tabR = h("button", { role: "tab", id: "t-review", "aria-selected": "false", class: "hidden", onclick: () => pick("review") }, "Review");
+  const pF = h("section", { id: "p-funnel", class: "hidden" });
+  const pR = h("section", { id: "p-review", class: "hidden" });
+  const none = h("div", { class: "card hidden", id: "none" }, "Your account has no console access yet. Ask an admin to add you.");
+  app.replaceChildren(
+    h("header", {}, h("h1", {}, "DigiCorper console"),
+      h("button", { class: "btn", onclick: async () => { await sb.auth.signOut(); showLogin(); } }, "Sign out")),
+    h("nav", { role: "tablist" }, tabF, tabR), pF, pR, none);
+  await Promise.all([loadFunnel("", pF, tabF), loadReview(pR, tabR)]);
+  const first = !tabF.classList.contains("hidden") ? "funnel" : !tabR.classList.contains("hidden") ? "review" : null;
+  if (first) pick(first); else document.getElementById("none").classList.remove("hidden");
+}
+function pick(name) {
+  for (const n of ["funnel", "review"]) {
+    document.getElementById("p-" + n).classList.toggle("hidden", n !== name);
+    document.getElementById("t-" + n).setAttribute("aria-selected", String(n === name));
+  }
+}
+function fail(panel, e, retry) {
+  panel.replaceChildren(h("div", { class: "card" }, h("div", { class: "err" }, e.message || "Something went wrong."),
+    e.code === "UNAUTHENTICATED" ? h("button", { class: "btn", onclick: () => showLogin() }, "Sign in again") : h("button", { class: "btn", onclick: retry }, "Retry")));
+}
+
+// ---- Screen 1: funnel
+const STAGES = [["registered", "Registered"], ["consented", "Consented"], ["started", "Started a mission"], ["submitted", "Submitted evidence"], ["verified", "Verified"]];
+async function loadFunnel(days, panel, tab) {
+  panel = panel || document.getElementById("p-funnel");
+  tab = tab || document.getElementById("t-funnel");
+  const params = {};
+  if (days) params.since = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  let d;
+  try { d = await api("funnel", params); }
+  catch (e) { if (e.code === "FORBIDDEN") return; tab.classList.remove("hidden"); return fail(panel, e, () => loadFunnel(days, panel, tab)); }
+  tab.classList.remove("hidden");
+  const sel = h("select", { id: "range", "aria-label": "Period", onchange: () => loadFunnel(sel.value, panel, tab) },
+    [["", "All time"], ["7", "Last 7 days"], ["30", "Last 30 days"], ["90", "Last 90 days"]].map(([v, t]) => h("option", { value: v, selected: v === String(days || "") }, t)));
+  const t = d.totals;
+  const head = h("div", { class: "card" },
+    h("p", { class: "lead" }, h("b", {}, t.submitted), ` of ${t.registered} registered have submitted evidence (${pct(t.activation_rate)})`),
+    h("div", { class: "mute" }, `${t.verified} verified so far`));
+  const cards = d.channels.length ? d.channels.map(c => {
+    if (c.suppressed) return h("div", { class: "card" }, h("h2", {}, c.name), h("div", { class: "mute" }, "Fewer than 5 members, so numbers are hidden to protect privacy."));
+    const bars = STAGES.flatMap(([k, label]) => [
+      h("span", {}, label),
+      h("div", { class: "track" }, h("div", { class: "fill" + (k === "submitted" ? " act" : ""), style: `width:${c.registered ? Math.round(c[k] / c.registered * 100) : 0}%` })),
+      h("span", { class: "n" }, c[k]),
+    ]);
+    return h("div", { class: "card" },
+      h("div", { class: "row" }, h("h2", {}, c.name), h("span", { class: "tag" }, (c.type || "Unattributed").replace("_", " ").toLowerCase())),
+      h("div", { class: "mute" }, `${pct(c.activation_rate)} activated`),
+      h("div", { class: "bars" }, bars));
+  }) : [h("div", { class: "card" }, "No registrations yet for this period. Add a channel and share its join link to start.")];
+  panel.replaceChildren(h("div", { class: "filters" }, sel), head, ...cards);
+}
+
+// ---- Screen 2: review queue
+async function loadReview(panel, tab) {
+  panel = panel || document.getElementById("p-review");
+  tab = tab || document.getElementById("t-review");
+  let d;
+  try { d = await api("review_queue", { limit: 20 }); }
+  catch (e) { if (e.code === "FORBIDDEN") return; tab.classList.remove("hidden"); return fail(panel, e, () => loadReview(panel, tab)); }
+  tab.classList.remove("hidden");
+  const s = d.summary;
+  const sum = h("div", { class: "card" },
+    h("p", { class: "lead" }, h("b", {}, s.pending), " waiting for review"),
+    h("div", { class: "mute" }, `${s.breached} overdue` + (s.median_hours_this_week != null ? ` · median ${s.median_hours_this_week} h to verify this week` : "")));
+  const cards = d.tasks.length ? d.tasks.map(taskCard) : [h("div", { class: "card" }, "Nothing to review. New submissions will appear here.")];
+  panel.replaceChildren(sum, ...cards);
+}
+
+function taskCard(t) {
+  const err = h("div", { class: "err", role: "alert" });
+  const reasonBox = h("div", { class: "reason hidden" });
+  const acts = h("div", { class: "acts" });
+  const all = () => card.querySelectorAll("button");
+  async function send(decision, reason) {
+    all().forEach(b => b.disabled = true); err.textContent = "";
+    try {
+      const r = await api("review_decide", { task_id: t.task_id, decision, reason });
+      toast(r.submission === "VERIFIED" ? "Verified" : r.submission === "NEEDS_IMPROVEMENT" ? "Sent back for improvement" : r.submission === "REJECTED" ? "Rejected" : "Escalated to officer");
+      loadReview();
+    } catch (e) { err.textContent = e.message || "Could not save the decision."; all().forEach(b => b.disabled = false); }
+  }
+  function askReason(decision, label) {
+    const ta = h("textarea", { rows: 3, "aria-label": "Reason", placeholder: "Say what the member should fix or why it is rejected" });
+    reasonBox.classList.remove("hidden");
+    reasonBox.replaceChildren(ta,
+      h("div", { class: "acts" },
+        h("button", { class: "btn primary", onclick: () => ta.value.trim() ? send(decision, ta.value.trim()) : (err.textContent = "A reason is required.") }, label),
+        h("button", { class: "btn", onclick: () => reasonBox.classList.add("hidden") }, "Cancel")));
+    ta.focus();
+  }
+  acts.append(
+    h("button", { class: "btn primary", onclick: () => confirm("Mark this evidence as verified?") && send("PASS") }, "Verify"),
+    h("button", { class: "btn warn", onclick: () => askReason("FAIL", "Send back") }, "Needs work"),
+    t.stage === "PEER"
+      ? h("button", { class: "btn", onclick: () => confirm("Escalate to an officer?") && send("ESCALATE") }, "Escalate")
+      : h("button", { class: "btn danger", onclick: () => askReason("REJECT", "Reject") }, "Reject"));
+  const media = (t.media || []).map(m => {
+    if (!m.url) return h("span", { class: "mute" }, "Attachment unavailable");
+    if ((m.mime || "").startsWith("image/")) return h("a", { href: m.url, target: "_blank", rel: "noopener" }, h("img", { src: m.url, alt: "Submitted photo", loading: "lazy" }));
+    if ((m.mime || "").startsWith("audio/")) return h("audio", { controls: true, src: m.url });
+    return h("a", { href: m.url, target: "_blank", rel: "noopener" }, "Open attachment");
+  });
+  const card = h("article", { class: "card" },
+    h("div", { class: "row" }, h("h2", {}, t.mission_title || "Mission"),
+      h("span", { class: "tag" + (t.sla_breached ? " late" : "") }, t.sla_breached ? "Overdue" : `${t.age_hours ?? 0} h old`)),
+    h("div", { class: "mute" }, `${t.stage === "PEER" ? "Peer review" : "Officer review"} · attempt ${t.attempt}`),
+    t.subject_consent === false ? h("div", { class: "note" }, "The member did not confirm consent from people shown. Check the photos before verifying.") : null,
+    t.text_response ? h("div", { class: "resp" }, t.text_response) : null,
+    media.length ? h("div", { class: "media" }, media) : null,
+    err, acts, reasonBox);
+  return card;
+}
+
+// ---- Start
+sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_OUT") showLogin(); });
+showApp();
+</script>
+</body>
+</html>
